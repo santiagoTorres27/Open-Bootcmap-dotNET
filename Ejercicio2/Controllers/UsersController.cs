@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using UniversityApiBackend.DataAccess;
 using UniversityApiBackend.Models.DataModels;
@@ -103,6 +98,13 @@ namespace UniversityApiBackend.Controllers
         private bool UserExists(int id)
         {
             return _context.Users.Any(e => e.Id == id);
+        }
+
+        // GET: api/email/example
+        [HttpGet("email/{email}")]
+        public async Task<ActionResult<IEnumerable<User>>> GetUsersByEmail(string email)
+        {
+            return await _context.Users.Where(user => user.Email.Contains(email)).ToListAsync();
         }
     }
 }
