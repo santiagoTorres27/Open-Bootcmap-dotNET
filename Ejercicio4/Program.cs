@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using UniversityApiBackend.DataAccess;
+using UniversityApiBackend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,12 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<ICourseService, CourseService>();
+builder.Services.AddScoped<IStudentsService, StudentsService>();
+builder.Services.AddScoped<ICategoriesService, CategoriesService>();
+builder.Services.AddScoped<IUsersService, UsersService>();
+
 
 //4. CORS Config
 builder.Services.AddCors(options =>

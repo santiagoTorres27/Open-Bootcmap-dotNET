@@ -16,7 +16,7 @@ namespace UniversityApiBackend.Models.DataModels
         public string Name { get; set; } = string.Empty;
 
         [Required, StringLength(280)]
-        public string ShortDescription { get; set; }
+        public string ShortDescription { get; set; } = string.Empty;
 
         [Required]
         public string Description { get; set; } = string.Empty;

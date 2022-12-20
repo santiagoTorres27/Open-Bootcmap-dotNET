@@ -11,13 +11,12 @@ namespace UniversityApiBackend.Controllers
     public class CoursesController : ControllerBase
     {
         private readonly UniversityDBContext _context;
-
-        private readonly ICourseService _coursesService;
+        private readonly ICourseService _courseService;
 
         public CoursesController(UniversityDBContext context, ICourseService courseService)
         {
             _context = context;
-            _coursesService = courseService;
+            _courseService = courseService;
         }
 
         // GET: api/Courses
@@ -109,7 +108,8 @@ namespace UniversityApiBackend.Controllers
         [HttpGet("category/{categoryID}")]
         public async Task<ActionResult<IEnumerable<Course>>> GetCoursesByCategory(int categoryId)
         {
-            return NoContent();
+            var courses = await _courseService.GetCoursesByCategory(categoryId);
+            return Ok(courses);
         }
 
         // GET COURSES WITHOUT CHAPTERS

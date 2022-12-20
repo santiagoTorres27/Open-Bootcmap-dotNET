@@ -6,7 +6,8 @@ namespace UniversityApiBackend.Models.DataModels
     {
         public int CourseId { get; set; }
 
-        public virtual Course Course { get; set; } = new Course();
+        [Required]
+        public Course Course { get; set; } = new Course();
 
         [Required]
         public string ChapterList { get; set; }
